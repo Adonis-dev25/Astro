@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Connection - Relationship Advice</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('/api/placeholder/1200/800');
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        .back-button:hover {
+            color: #FF4500;
+        }
+
+        .logo {
+            display: block;
+            width: 180px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            margin-left: 25px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #FF4500;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #FF4500;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content Styles */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+
+        .article-hero {
+            text-align: center;
+            margin-bottom: 40px;
+            background-color: #fff;
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #FF4500;
+            position: relative;
+            display: inline-block;
+        }
+
+        .article-hero h1::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: #FF4500;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .article-hero p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+
+        .article-hero img {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: #FF4500;
+            bottom: 0;
+            left: 0;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 10px;
+            color: #444;
+        }
+
+        .section p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section img {
+            width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote {
+            background-color: #f9f9f9;
+            border-left: 4px solid #FF4500;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .quote h2 {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .quote h2::after {
+            display: none;
+        }
+
+        .tip-box {
+            background-color: #fff8e6;
+            border: 1px solid #ffd77a;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .tip-box h3 {
+            color: #b38a0d;
+            margin-top: 0;
+        }
+
+        .action-steps {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .action-steps ul {
+            padding-left: 20px;
+        }
+
+        .action-steps li {
+            margin-bottom: 15px;
+        }
+
+        /* Special Sections Styling */
+        .chastity-section, .disappointment-section {
+            border-top: 2px dashed #ddd;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .chastity-section h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .chastity-section h2, .disappointment-section h2 {
+            color: #FF4500;
+        }
+
+        .chastity-section ul, .disappointment-section ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .chastity-section li, .disappointment-section li {
+            margin-bottom: 10px;
+        }
+
+        .glittey-text h2 {
+            display: inline-block;
+            animation: sparkle 1.5s infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0% { text-shadow: 0 0 5px rgba(255, 69, 0, 0.5); }
+            100% { text-shadow: 0 0 15px rgba(255, 69, 0, 0.8); }
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-section h3 {
+            color: #FF4500;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #444;
+            border-radius: 50%;
+            margin-right: 15px;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: #FF4500;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+        }
+
+        .copyright .logo {
+            width: 120px;
+            margin-bottom: 15px;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #FF4500;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #e03e00;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 15px 4%;
+            }
+
+            .logo {
+                width: 150px;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 100;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+
+            .nav-menu a {
+                margin: 10px 0;
+            }
+
+            .article-hero h1 {
+                font-size: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="javascript:void(0);" class="back-button" onclick="window.history.back();">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back</span>
+            </a>
+            <a href="#" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+                    <g transform="translate(50,30) scale(1.5)">
+                        <path d="M20,50 Q50,20 80,50 T140,50" fill="none" stroke="#FF4500" stroke-width="4"/>
+                        <circle cx="50" cy="35" r="25" fill="#FF4500"/>
+                        <text x="90" y="45" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">ASTRO</text>
+                        <text x="90" y="85" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">CONNECTION</text>
+                    </g>
+                </svg>
+            </a>
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="article-hero">
+        <h1>Unwritten Rules of Relationships</h1>
+        <p>Relationship is not a do or die affair; it's a matter of consideration where two partners have decided that they'll be together and want to dive into the sea of happy living and well-being. It's not just physical but also mental as it affects one's mental health and wellness both for good and otherwise, depending on how you want it to go. When it leads to marriage, it's not something you just dive in and out of as you wish.</p>
+        <img src="/storage/emulated/0/Pictures/Screenshots/Screenshot_20250316-080411.jpg" alt="Peaceful sunrise symbolizing new beginnings" />
+    </div>
+    
+    <main class="article-content">
+        <div class="section">
+            <h2>Understanding the Process: How to Know You're in Love</h2>
+            <p>When one wants to know if they are in love, they have to take time and think about what changes when the person they feel love for is around. How do they behave, talk, and feel? Do they feel happy, safe, at home, loved, comfortable around that person? And how do they feel when the person isn't around—do they feel worried about the person or sad because the person isn't there? By analyzing these changes, one can determine whether or not they are truly in love.</p>
+            
+            <div class="quote">
+                <h2><span style="color: orange">"Love is knowing you're safe in their heart and feeling at home in their presence."</span></h2>
+                <p>- Salome Moyo</p>
+            </div>
+
+            <img src="/storage/emulated/0/Pictures/Screenshots/Screenshot_20250316-081100.jpg" alt="Symbolic journey path through nature" />
+        </div>
+
+        <div class="section">
+            <h2>Relationship Goals</h2>
+            <h3>Communication is key; always make time to listen and share openly with each other.</h3>
+            <p>It's important for a couple to set goals in their relationship because everything that happens must have a purpose. If the relationship doesn't have goals, this is where confrontations arise here and there.</p>
+            
+            <div class="quote">
+                <h2><span style="color: orange">"Relationship goals are not about perfection, but about growing together through every challenge and joy."</span></h2>
+                <p>- Queen Zulu</p>
+            </div>
+            
+            <img src="Screenshot_20250316-080411.jpg" alt="Couple working together on goals" />
+            <img src="/storage/emulated/0/Pictures/facebook/1742549178856.jpg" alt="">
+           <h2>Trust and loyalty</h2> 
+           <p> *Trust & Loyalty* are the foundation of any strong relationship. Without them, everything else falls apart.  
+<h2><li>Trusting</li></h2>Trust means believing in your partner’s honesty and intentions. It’s about feeling secure, knowing they won’t betray you—whether emotionally or physically. Trust takes time to build but can be broken in an instant, so it requires constant effort and honesty.  
+
+🔹<h2><li>loyalty</li></h2> Loyalty is staying committed, even when things get tough. It’s about choosing your partner every day, standing by them, and not entertaining outside distractions. Loyalty isn’t just about faithfulness—it’s about being reliable, supportive, and dedicated.  
+A relationship built on *trust and loyalty* creates *peace, security, and long-term happiness*. Without them, doubts, jealousy, and insecurity can destroy the bond. Do you think trust is earned over time, or should it be given until broken? </p>
+<h3><ul><li>Be Each Other’s Safe Space</li></ul></h3>
+<p>In a world that never stops moving, where storms of stress, noise, and expectations hit from every angle, your relationship should be the one place that feels like peace. Be the person your partner can turn to without fear of judgment. Whether they’ve had a terrible day or are bursting with joy, be the calm in their chaos and the cheerleader in their wins. A strong bond isn’t just built through romance but through emotional safety. Listen more than you speak. Understand before you respond. Create a space where vulnerability isn’t just welcomed — it’s valued. The real goal isn’t perfection, it’s protection — of hearts, peace of mind, and each other’s emotional wellbeing. Because at the end of the day, love should feel like home. </p>
+            <h2 style="text-align: center;">Chastity</h2>
+            <p>Chastity is a concept that often refers to the practice of abstaining from sexual activity, typically due to personal, religious, or cultural beliefs. It can mean different things to different people depending on their values and circumstances. For some, chastity is seen as a virtue, especially in certain religious or spiritual teachings, where it might be associated with purity, discipline, or devotion. Others may view it as a choice made for personal growth, health, or for maintaining focused relationships.</p>
+            
+            <div class="chastity-section">
+                <h1>Aspects of Chastity</h1>
+                
+                <h2 style="text-align: center;">1. Physical Chastity</h2>
+                <h3>(i). Abstinence</h3>
+                <p>The state of staying away from sexual intercourse. Abstinence is often misunderstood, but it can be a powerful tool for self-discovery and growth. By abstaining from sexual activity, individuals can focus on developing their emotional, mental, and spiritual selves. This can lead to a deeper understanding of oneself and one's values. Abstinence can also help individuals build self-discipline and self-respect. By making this choice, individuals can demonstrate to themselves that they are capable of making difficult choices and sticking to their values.</p>
+
+                <div class="glittey-text">
+                    <h2><span style="color: red">"Abstinence is power."</span></h2>
+                    <p>- Unknown</p>
+                </div>
+
+                <img src="/api/placeholder/800/450" alt="Self-discipline symbol" />
+                
+                <h3>(ii). Self Awareness</h3>
+                <p>Understanding one's own desires and values to make informed choices.</p>
+                <ul>
+                    <li><strong>Modesty:</strong> Dressing and behaving in a way that respects one's own and others' dignity.</li>
+                    <li><strong>Purity:</strong> Maintaining a pure heart and mind, free from lustful thoughts and desires.</li>
+                </ul>
+
+                <h3 style="text-align: center;">2. Emotional Chastity</h3>
+                <p>Emotional chastity involves being honest and authentic in one's emotions and relationships, and maintaining healthy emotional boundaries.</p>
+                 <ul>
+                    <li><strong>Mental Purity:</strong> Avoiding lustful thoughts and fantasies.</li>
+                    <li><strong>Discernment:</strong> Being mindful of the media and influences one exposes oneself to.</li>
+                    <li><strong>Focus on Virtue:</strong> Cultivating virtuous thoughts and desires.</li>
+                </ul>
+
+                <h3 style="text-align: center;">4. Spiritual Chastity</h3>
+                <p>Spiritual chastity involves being faithful to one's spiritual commitments and values, and cultivating a deep prayer life.</p>
+                <ul>
+                    <li><strong>Faithfulness:</strong> Being faithful to one's spiritual commitments and values.</li>
+                    <li><strong>Prayerfulness:</strong> Cultivating a deep prayer life to guide one's thoughts and actions.</li>
+                    <li><strong>Detachment:</strong> Detaching oneself from worldly desires and attachments.</li>
+                </ul>
+            </div>
+
+            <div class="disappointment-section">
+                <h2>Disappointment in Relationships</h2>
+                <p>Disappointment in relationships can be a challenging and painful experience.</p>
+                <h3>Causes of Disappointment in Relationships</h3>
+                <p>Disappointment in relationships can arise from various sources, including:</p>
+                <ul>
+                    <li><strong>Unmet Expectations:</strong> When our expectations from our partner or the relationship are not met, it can lead to disappointment.</li>
+                    <li><strong>Communication Breakdown:</strong> Poor communication or misunderstandings can cause disappointment and frustration.</li>
+                    <li><strong>Trust Issues:</strong> Betrayal of trust or feelings of insecurity can lead to disappointment.</li>
+                    <li><strong>Different Values or Goals:</strong> When partners have different values, goals, or priorities, it can cause disappointment and conflict.</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <h3>Remember:</h3>
+                <p>Healing isn't linear, and everyone's journey is different. Be patient with yourself as you navigate this process. Some days will feel like progress, others like setbacks—both are normal.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Practical Steps Forward</h2>
+            
+            <div class="action-steps">
+                <ul>
+                    <li><strong>Create healthy boundaries:</strong> This includes digital boundaries—block them if necessary. It's not childish; it's protecting your peace. Social media stalking only prolongs the pain.</li>
+                    <li><strong>Focus on self-care:</strong> Establish routines that nurture your physical and mental health. Start small: walks, meditation, journaling, or whatever brings you peace.</li>
+                    <li><strong>Rebuild your support system:</strong> Reconnect with friends and family. Don't isolate yourself—let people in who want to help.</li>
+                    <li><strong>Explore new interests:</strong> Rediscover who you were before the relationship. Take that class you've been putting off, start that hobby you've been curious about.</li>
+                    <li><strong>Practice mindfulness:</strong> Stay present rather than dwelling on the past or anxiously anticipating the future.</li>
+                </ul>
+            </div>
+
+            <div class="quote">
+                <h2><span style="color: green">"Sometimes good things fall apart so better things can fall together."</span></h2>
+                <p>- Marilyn Monroe</p>
+            </div>
+
+            <img src="/api/placeholder/800/450" alt="Self-care practices visualization" />
+        </div>
+
+        <div class="section">
+            <h2>When to Seek Support</h2>
+            <img src="/storage/emulated/0/Pictures/WhatsApp/IMG-20250417-WA0000.jpg" alt="">
+        
+            <p>Get ideas from elders; don't isolate yourself from them. They're the ones who have knowledge about relationships. Consider seeking support when you:</p>
+            <ul>
+                <li>Feel stuck in your grief for an extended period</li>
+                <li>Have difficulty maintaining daily routines</li>
+                <li>Experience persistent feelings of hopelessness</li>
+                <li>Find yourself unable to imagine a positive future</li>
+                <li>Notice unhealthy coping mechanisms developing</li>
+            </ul>
+
+            <div class="quote">
+                <h2><span style="color: brown">"Asking for help isn't giving up. It's refusing to give up."</span></h2>
+                <p>- Faith Musonda</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Handling the Feelings</h2>
+            <p>Of course, it's important to handle our sexual feelings. We can do a lot of activities so that you forget about the feeling which is overwhelming you. You can play sports, have fun with friends, engage in creative hobbies, or focus on personal goals and growth.</p>
+
+            <div class="tip-box">
+                <h3>If They Come Back:</h3>
+                <p>Ask yourself if the fundamental issues that caused the breakup have been resolved. Consider whether getting back together aligns with your current goals and what you've learned about yourself in the meantime.</p>
+            </div>
+
+            <div class="quote">
+                <h2>"Not everyone who wanders back into your life is meant to stay."</h2>
+                <p>- Racheal Malambo</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Looking Forward</h2>
+            <p>Moving on doesn't mean forgetting—it means learning to carry the experience with you in a way that doesn't hold you back. As you heal, you'll discover new strengths and capabilities you didn't know you had. Remember, someone's rejection isn't your life's direction—it's just a redirection.</p>
+            
+            <div class="quote">
+                <h2>"If you were born with the weakness to fall, you were born with the strength to rise."</h2>
+                <p>- Rupi Kaur</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>Growth Mindset:</h3>
+                <img src="/api/placeholder/800/450" alt="Symbolic new beginnings" />
+                <p>View this period as an opportunity for personal growth and self-discovery. The challenges you face today are building blocks for a stronger tomorrow. Your best chapters are still unwritten.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Astro Connection</h3>
+                <p>We're dedicated to helping you navigate modern relationships with confidence and authenticity. Our expert guidance is designed to empower you at every stage of your journey.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
+                <p><a href="about.html" style="color: white; text-decoration: none;">About</a></p>
+                <p><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></p>
+                <p><a href="privacy.html" style="color: white; text-decoration: none;">Privacy Policy</a></p>
+                <p><a href="terms.html" style="color: white; text-decoration: none;">Terms of Service</a></p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <a href="#" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+                    <g transform="translate(50,30) scale(1.5)">
+                        <path d="M20,50 Q50,20 80,50 T140,50" fill="none" stroke="#FF4500" stroke-width="4"/>
+                        <circle cx="50" cy="35" r="25" fill="#FF4500"/>
+                        <text x="90" y="45" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">ASTRO</text>
+                        <text x="90" y="85" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">CONNECTION</text>
+                    </g>
+                </svg>
+            </a>
+            <p>&copy; 2025 Astro Connection. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        const revealSections = () => {
+            const sections = document.querySelectorAll('.section');
+            const windowHeight = window.innerHeight;
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < windowHeight - 150) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        window.addEventListener('scroll', revealSections);
+        window.addEventListener('load', revealSections);
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                this.src = '/api/placeholder/' + (this.width || 800) + '/' + (this.height || 450);
+                this.alt = 'Image placeholder';
+            });
+        });
+    </script>
+</body>
+</html>
