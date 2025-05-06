@@ -1,0 +1,122 @@
+/* Topic Page Styles */
+.topic-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.topic-hero {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 60px 20px;
+    background: linear-gradient(rgba(255,69,0,0.1), rgba(255,69,0,0.05));
+    border-radius: 15px;
+}
+
+.topic-hero h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.topic-intro {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.topic-sections {
+    display: grid;
+    gap: 40px;
+}
+
+.content-section {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.content-section h2 {
+    color: #FF4500;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.key-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.point {
+    text-align: center;
+    padding: 20px;
+}
+
+.point i {
+    font-size: 2rem;
+    color: #FF4500;
+    margin-bottom: 15px;
+}
+
+.point h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.love-signs {
+    list-style: none;
+    padding: 0;
+}
+
+.love-signs li {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 30px;
+}
+
+.love-signs li:before {
+    content: '❤';
+    position: absolute;
+    left: 0;
+    color: #FF4500;
+}
+
+.quote-block {
+    background: #f9f9f9;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.quote-block blockquote {
+    font-size: 1.5rem;
+    color: #333;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.quote-block cite {
+    color: #666;
+    font-style: normal;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .topic-hero h1 {
+        font-size: 2rem;
+    }
+
+    .content-section {
+        padding: 20px;
+    }
+
+    .key-points {
+        grid-template-columns: 1fr;
+    }
+}
