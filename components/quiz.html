@@ -3,22 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Relationship Quiz - Astro Connection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/quiz.css">
 </head>
 <body>
     <header>
-        <head class="header-container">
-            <quiz class="title">QUIZ</quiz>
-            <P>WELCOME TO THE </P>
-            <P>4HDFSGIJSGGJ</P>
-            <nav class="TOPIC">
-                <ul>
-                    <li><a href="COMMUNICTIOM.html">COMMUNICATOPM</a></li>
-                    <li><a href="DISAPOINTMENR.html">COMMUNICATOPM</a></li>
-                </ul>
+        <div class="header-content">
+            <a href="../index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html">Home</a>
+                <a href="../about/about.html">About</a>
+                <a href="../about/contact.html">Contact</a>
             </nav>
-        </head>
+        </div>
     </header>
-    
+
+    <main class="quiz-container">
+        <div class="quiz-header">
+            <h1>Relationship Assessment Quiz</h1>
+            <p>Discover insights about your relationship style and areas for growth</p>
+        </div>
+
+        <div class="quiz-content">
+            <div id="start-screen" class="quiz-section active">
+                <h2>Ready to Begin?</h2>
+                <p>This quiz will help you understand your relationship patterns and provide personalized insights.</p>
+                <button id="start-quiz" class="quiz-button">Start Quiz</button>
+            </div>
+
+            <div id="question-container" class="quiz-section">
+                <div id="progress-bar"></div>
+                <h2 id="question-text"></h2>
+                <div id="options-container"></div>
+            </div>
+
+            <div id="results-container" class="quiz-section">
+                <h2>Your Results</h2>
+                <div id="results-content"></div>
+                <div class="results-actions">
+                    <button id="retry-quiz" class="quiz-button">Take Quiz Again</button>
+                    <a href="../index.html" class="quiz-button secondary">Explore Topics</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../Scripts/quiz.js"></script>
 </body>
 </html>
