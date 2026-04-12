@@ -1,171 +1,72 @@
-const quizData = [
-    {
-        question: "How do you typically handle conflicts in relationships?",
-        options: [
-            "I prefer to address issues immediately and directly",
-            "I need time to process before discussing",
-            "I tend to avoid confrontation",
-            "I try to find compromise right away"
-        ]
-    },
-    {
-        question: "What's your primary way of showing affection?",
-        options: [
-            "Verbal expressions of love",
-            "Physical touch and closeness",
-            "Acts of service and help",
-            "Giving gifts and surprises"
-        ]
-    },
-    {
-        question: "How do you prefer to receive emotional support?",
-        options: [
-            "Through deep conversations",
-            "Through physical presence",
-            "Through practical help",
-            "Through encouraging messages"
-        ]
-    },
-    {
-        question: "What's your approach to maintaining boundaries?",
-        options: [
-            "I clearly communicate my needs",
-            "I adjust based on the situation",
-            "I struggle to set boundaries",
-            "I maintain strict boundaries"
-        ]
-    },
-    {
-        question: "How do you handle trust issues?",
-        options: [
-            "Open communication about concerns",
-            "Taking time to build trust gradually",
-            "Requiring proof of trustworthiness",
-            "Giving trust until proven otherwise"
-        ]
-    }
-];
-
-let currentQuestion = 0;
-let answers = [];
-
-document.addEventListener('DOMContentLoaded', () => {
-    const startButton = document.getElementById('start-quiz');
-    const retryButton = document.getElementById('retry-quiz');
-    
-    startButton.addEventListener('click', startQuiz);
-    retryButton.addEventListener('click', resetQuiz);
-});
+// Quiz Game for Relationships
 
 function startQuiz() {
-    document.getElementById('start-screen').classList.remove('active');
-    document.getElementById('question-container').classList.add('active');
-    showQuestion();
-}
+    const quizData = getQuizData();
+    let score = 0;
 
-function showQuestion() {
-    const questionData = quizData[currentQuestion];
-    const progressPercent = (currentQuestion / quizData.length) * 100;
-    
-    document.getElementById('progress-bar').style.setProperty('--progress', `${progressPercent}%`);
-    document.getElementById('question-text').textContent = questionData.question;
-    
-    const optionsContainer = document.getElementById('options-container');
-    optionsContainer.innerHTML = '';
-    
-    questionData.options.forEach((option, index) => {
-        const button = document.createElement('button');
-        button.className = 'option-button';
-        button.textContent = option;
-        button.addEventListener('click', () => selectAnswer(index));
-        optionsContainer.appendChild(button);
-    });
-}
-
-function selectAnswer(index) {
-    answers[currentQuestion] = index;
-    
-    document.querySelectorAll('.option-button').forEach(button => {
-        button.classList.remove('selected');
-    });
-    
-    document.querySelectorAll('.option-button')[index].classList.add('selected');
-    
-    setTimeout(() => {
-        if (currentQuestion < quizData.length - 1) {
-            currentQuestion++;
-            showQuestion();
-        } else {
-            showResults();
+    quizData.forEach((quiz) => {
+        const userAnswer = prompt(quiz.question);
+        if (userAnswer.toLowerCase() === quiz.answer.toLowerCase()) {
+            score++;
         }
-    }, 500);
-}
-
-function showResults() {
-    document.getElementById('question-container').classList.remove('active');
-    document.getElementById('results-container').classList.add('active');
-    
-    const resultsContent = document.getElementById('results-content');
-    const personalityTraits = analyzeAnswers();
-    
-    resultsContent.innerHTML = `
-        <h3>Your Relationship Style</h3>
-        <p>${personalityTraits.style}</p>
-        <h3>Strengths</h3>
-        <p>${personalityTraits.strengths}</p>
-        <h3>Areas for Growth</h3>
-        <p>${personalityTraits.growth}</p>
-    `;
-}
-
-function analyzeAnswers() {
-    // Simple analysis based on answer patterns
-    const styles = {
-        communicator: 0,
-        nurturer: 0,
-        independent: 0,
-        harmonizer: 0
-    };
-    
-    answers.forEach((answer, index) => {
-        if (answer === 0) styles.communicator++;
-        if (answer === 1) styles.nurturer++;
-        if (answer === 2) styles.independent++;
-        if (answer === 3) styles.harmonizer++;
     });
-    
-    const dominantStyle = Object.entries(styles)
-        .sort((a, b) => b[1] - a[1])[0][0];
-    
-    const results = {
-        communicator: {
-            style: "You're a Direct Communicator",
-            strengths: "You excel at expressing your needs and addressing issues head-on.",
-            growth: "Consider being more patient with those who need processing time."
-        },
-        nurturer: {
-            style: "You're an Emotional Nurturer",
-            strengths: "You're highly attuned to emotional needs and provide great support.",
-            growth: "Work on setting healthy boundaries and self-care practices."
-        },
-        independent: {
-            style: "You're an Independent Partner",
-            strengths: "You maintain a strong sense of self in relationships.",
-            growth: "Practice being more vulnerable and interdependent when appropriate."
-        },
-        harmonizer: {
-            style: "You're a Natural Harmonizer",
-            strengths: "You excel at finding compromise and maintaining peace.",
-            growth: "Work on expressing your own needs more directly."
-        }
-    };
-    
-    return results[dominantStyle];
+
+    displayResults(score, quizData.length);
 }
 
-function resetQuiz() {
-    currentQuestion = 0;
-    answers = [];
-    document.getElementById('results-container').classList.remove('active');
-    document.getElementById('start-screen').classList.add('active');
+function getQuizData() {
+    return [
+        // Beginner Questions
+        { question: "What is your favorite type of date? (a) Movie (b) Dinner (c) Walk", answer: "a" },
+        { question: "Do you believe in love at first sight? (a) Yes (b) No", answer: "a" },
+        { question: "How often do you communicate with your partner? (a) Daily (b) Weekly (c) Rarely", answer: "a" },
+        { question: "What's your favorite relationship activity? (a) Traveling (b) Game Night (c) Cooking together", answer: "a" },
+        { question: "Do you like surprise dates? (a) Yes (b) No", answer: "a" },
+        { question: "How do you feel about public displays of affection? (a) Love it (b) Dislike it", answer: "a" },
+        { question: "What is your relationship goal? (a) Casual (b) Serious", answer: "a" },
+        { question: "Do you believe in soulmates? (a) Yes (b) No", answer: "a" },
+        
+        // Intermediate Questions
+        { question: "How do you resolve conflicts? (a) Talking it out (b) Avoiding (c) Getting angry", answer: "a" },
+        { question: "What role does trust play in your relationships? (a) Very important (b) Somewhat important (c) Not important", answer: "a" },
+        { question: "How do you feel about long-distance relationships? (a) I’m okay with them (b) I don’t prefer them", answer: "a" },
+        { question: "What's your biggest relationship pet peeve? (a) Being ignored (b) Not being understood (c) Lack of affection", answer: "a" },
+        { question: "How do you feel about your partner's friends? (a) Great (b) Neutral (c) Not great", answer: "a" },
+        { question: "Do you believe in second chances? (a) Yes (b) No", answer: "a" },
+        { question: "How often do you compromise in a relationship? (a) Always (b) Sometimes (c) Rarely", answer: "a" },
+        { question: "What do you think about dating apps? (a) Good (b) Bad (c) Indifferent", answer: "a" },
+        { question: "Do you like to plan dates or go with the flow? (a) Plan (b) Flow", answer: "a" },
+        
+        // Advanced Questions
+        { question: "What's your view on commitment? (a) Very important (b) Somewhat important (c) Not important", answer: "a" },
+        { question: "How do you ensure a healthy relationship? (a) Communication (b) Trust (c) Time apart", answer: "a" },
+        { question: "What's the key ingredient for a successful relationship? (a) Love (b) Trust (c) Respect", answer: "a" },
+        { question: "How do you handle your partner's flaws? (a) Accept them (b) Try to change them", answer: "a" },
+        { question: "Do you believe in love evolving over time? (a) Yes (b) No", answer: "a" },
+        { question: "How important is personal space in a relationship? (a) Very important (b) Somewhat important (c) Not important", answer: "a" },
+        { question: "What's your opinion on therapy in relationships? (a) Good (b) Bad (c) Neutral", answer: "a" },
+        { question: "How do you feel about marriage? (a) Important (b) Not important", answer: "a" },
+        { question: "How do you celebrate relationship milestones? (a) Big celebrations (b) Small acknowledgments", answer: "a" },
+    ];
 }
+
+function displayResults(score, total) {
+    const percentage = (score / total) * 100;
+    const difficulty = (total <= 8) ? 'Beginner' : (total <= 9) ? 'Intermediate' : 'Advanced';
+    alert(`Your Score: ${score}/${total}\nPercentage: ${percentage.toFixed(2)}%\nDifficulty Level: ${difficulty}`);
+    analyzeRelationshipStyle(score);
+}
+
+function analyzeRelationshipStyle(score) {
+    let style;
+    if (score >= 15) {
+        style = "You are a Romantic! You thrive on affection and deep connections.";
+    } else if (score >= 10) {
+        style = "You are a Realist! You balance love and practicality.";
+    } else {
+        style = "You are a Free Spirit! You enjoy spontaneity in relationships.";
+    }
+    alert(style);
+}
+
+startQuiz();
