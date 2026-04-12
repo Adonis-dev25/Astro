@@ -3,36 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Chastity</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background: #4CAF50; color: white; padding: 1em 0; text-align: center; }
+        nav { background: #333; padding: 1em; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; }
+        section { padding: 20px; }
+        footer { background: #333; color: white; text-align: center; padding: 1em 0; position: relative; }
+        .back-to-top { position: fixed; bottom: 20px; right: 20px; display: none; }
+        .back-to-top a { background: #4CAF50; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; }
+        .back-to-top a:hover { background: #45a049; }
+    </style>
 </head>
 <body>
 <header>
     <h1>Understanding Chastity</h1>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
 </header>
-<main>
-    <section>
-        <h2>What is Chastity?</h2>
-        <p>Chastity refers to the practice of restraining from sexual intercourse or activities, often associated with religious or philosophical beliefs.</p>
-    </section>
-    <section>
-        <h2>The Importance of Chastity</h2>
-        <p>Chastity is often seen as a way to achieve personal integrity, spiritual growth, and dedication to one's beliefs.</p>
-    </section>
-    <section>
-        <h2>Chastity in Different Cultures</h2>
-        <p>Many cultures and religions advocate chastity as a virtue and teach its significance in community and personal living.</p>
-    </section>
-</main>
+<nav>
+    <a href="#section1">What is Chastity?</a>
+    <a href="#section2">Practical Tips</a>
+    <a href="#section3">Cultural Perspectives</a>
+    <a href="#section4">Inspirational Quotes</a>
+</nav>
+<button class="back-to-top" onclick="scrollToTop()">&#8679; Back to Top</button>
+<section id="section1">
+    <h2>What is Chastity?</h2>
+    <p>Chastity involves refraining from sexual activities for various reasons. It can be seen as a virtue in many cultures, emphasizing self-control and discipline.</p>
+</section>
+<section id="section2">
+    <h2>Practical Tips for Practicing Chastity</h2>
+    <ul>
+        <li><i class="fas fa-user-check"></i> Set clear personal boundaries.</li>
+        <li><i class="fas fa-calendar-alt"></i> Keep yourself engaged with hobbies.</li>
+        <li><i class="fas fa-users"></i> Surround yourself with supportive friends.</li>
+    </ul>
+</section>
+<section id="section3">
+    <h2>Cultural Perspectives</h2>
+    <p>Throughout history, chastity has held varying importance in different cultures. In some societies, it is highly esteemed, while in others, it may not be emphasized as much.</p>
+</section>
+<section id="section4">
+    <h2>Inspirational Quotes</h2>
+    <blockquote>"Chastity is the most unpopular of the virtues, yet it is the most beneficial." - Unknown</blockquote>
+    <blockquote>"Self-control is strength. Right thought is mastery. Calmness is power." - James Allen</blockquote>
+</section>
 <footer>
-    <p>&copy; 2026 Your Website. All rights reserved.</p>
+    <p>&copy; 2026 Chastity Awareness. All rights reserved.</p>
 </footer>
+<script>
+    window.onscroll = function() { scrollFunction(); };
+    function scrollFunction() {
+        var button = document.querySelector('.back-to-top');
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            button.style.display = "block";
+        } else {
+            button.style.display = "none";
+        }
+    }
+    function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
 </body>
 </html>
