@@ -1,0 +1,17 @@
+/* Extra pieces for the new topic pages. Uses the same orange (#FF4500) as the rest of the site. */
+.dd{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.dd>div{padding:20px;border-radius:10px}
+.dd h3{margin-bottom:10px}.dd ul{padding-left:20px}.dd li{padding:4px 0}
+.dd-do{background:#eef8f1}.dd-do h3{color:#2e7d4f}
+.dd-dont{background:#fff1ec}.dd-dont h3{color:#d63a00}
+.steps{list-style:none;counter-reset:step;padding:0}
+.steps li{counter-increment:step;position:relative;padding:8px 0 16px 52px}
+.steps li:before{content:counter(step);position:absolute;left:0;top:2px;width:36px;height:36px;border-radius:50%;background:#FF4500;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.challenges-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:20px}
+.challenge{background:#f9f9f9;border-left:4px solid #FF4500;border-radius:8px;padding:18px}
+.challenge h3{margin-bottom:8px;color:#333}
+.topic-cta{text-align:center}
+.topic-cta p{margin-bottom:20px;color:#666}
+.pn{display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px;margin-top:10px}
+.pn a{color:#FF4500;font-weight:600;text-decoration:none}.pn a:hover{text-decoration:underline}
+@media (max-width:768px){.steps li{padding-left:46px}}
