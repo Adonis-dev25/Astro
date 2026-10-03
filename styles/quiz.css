@@ -1,0 +1,46 @@
+.quiz-container{max-width:760px;margin:40px auto;padding:0 20px}
+.quiz-header{text-align:center;margin-bottom:30px}
+.quiz-header h1{color:#FF4500;font-size:2.4rem;margin-bottom:10px}
+.quiz-header p{color:#666}
+.quiz-section{display:none;background:#fff;padding:36px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);border-top:5px solid #FF4500}
+.quiz-section.active{display:block;animation:qIn .35s ease}
+@keyframes qIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+#start-screen{text-align:center}
+.start-icon{width:84px;height:84px;margin:0 auto 18px;border-radius:50%;background:rgba(255,69,0,.1);color:#FF4500;font-size:2.2rem;display:flex;align-items:center;justify-content:center}
+#start-screen h2{margin-bottom:10px;color:#333}
+#start-screen p{color:#666;max-width:480px;margin:0 auto}
+.quiz-facts{list-style:none;display:flex;justify-content:center;flex-wrap:wrap;gap:12px 24px;margin:22px 0 28px;color:#555;font-size:.95rem}
+.quiz-facts i{color:#FF4500;margin-right:6px}
+.quiz-button{display:inline-block;background:#FF4500;color:#fff;border:none;padding:13px 30px;border-radius:30px;font-size:1.05rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .25s ease}
+.quiz-button:hover{background:#e03e00;transform:translateY(-2px);box-shadow:0 6px 14px rgba(255,69,0,.3)}
+.quiz-button.secondary{background:#fff;color:#FF4500;border:2px solid #FF4500;margin-left:12px;padding:11px 28px}
+.quiz-button.secondary:hover{background:#FF4500;color:#fff}
+.quiz-meta{display:flex;justify-content:space-between;font-size:.9rem;color:#777;margin-bottom:10px}
+#question-area{color:#FF4500;font-weight:600}
+#progress-bar{height:8px;background:#eee;border-radius:99px;overflow:hidden;margin-bottom:28px}
+#progress-fill{height:100%;width:0;background:linear-gradient(90deg,#FF4500,#ff9a3c);border-radius:99px;transition:width .4s ease}
+#question-text{font-size:1.45rem;line-height:1.35;color:#222;margin-bottom:22px}
+.option-button{display:flex;align-items:center;gap:14px;width:100%;padding:14px 18px;margin:10px 0;border:2px solid #eee;border-radius:12px;background:#fff;text-align:left;font-size:1rem;color:#333;cursor:pointer;transition:all .2s ease}
+.option-button .letter{flex:none;width:32px;height:32px;border-radius:50%;background:#f3f3f3;color:#666;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .2s ease}
+.option-button:hover{border-color:#FF4500;background:#fff8f5}
+.option-button:hover .letter{background:#FF4500;color:#fff}
+.option-button.selected{border-color:#FF4500;background:#FF4500;color:#fff}
+.option-button.selected .letter{background:#fff;color:#FF4500}
+.quiz-link{background:none;border:none;color:#666;font-size:.95rem;cursor:pointer;margin-top:14px;padding:6px 0}
+.quiz-link:hover{color:#FF4500}.quiz-link:disabled{visibility:hidden}
+.score-row{display:flex;align-items:center;gap:24px;margin:20px 0 28px}
+.score-ring{--p:0;flex:none;width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:conic-gradient(#FF4500 calc(var(--p)*1%),#eee 0)}
+.score-ring span{width:86px;height:86px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;font-weight:700;color:#FF4500}
+.score-row h3{font-size:1.5rem;color:#222;margin-bottom:6px}.score-row p{color:#666}
+.area-row{margin-bottom:16px}
+.area-label{display:flex;justify-content:space-between;align-items:center;font-weight:600;color:#333;margin-bottom:6px}
+.area-badge{font-size:.8rem;padding:2px 10px;border-radius:99px;background:#f3f3f3;color:#555}
+.area-badge.strong{background:#e3f5ea;color:#2e7d4f}.area-badge.mid{background:#fff3d6;color:#9a6b00}.area-badge.low{background:#ffe5dc;color:#d63a00}
+.area-track{height:10px;background:#eee;border-radius:99px;overflow:hidden}
+.area-track i{display:block;height:100%;width:0;background:#FF4500;border-radius:99px;transition:width .9s ease}
+.next-read{background:#fff5f0;border:1px solid #ffd9c9;border-radius:12px;padding:20px;margin:26px 0}
+.next-read p{margin:6px 0 14px;color:#555}
+.results-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.results-actions .quiz-button.secondary{margin-left:0}
+@media (max-width:600px){.quiz-section{padding:22px}.score-row{flex-direction:column;text-align:center}.quiz-header h1{font-size:1.8rem}#question-text{font-size:1.2rem}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
