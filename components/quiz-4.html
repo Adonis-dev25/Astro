@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relationship Quiz - Astro Connection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/quiz.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><g transform="translate(50,30) scale(1.5)"><path d="M20,50 Q50,20 80,50 T140,50" fill="none" stroke="#FF4500" stroke-width="4"/><circle cx="50" cy="35" r="25" fill="#FF4500"/><text x="90" y="45" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">ASTRO</text><text x="90" y="85" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">CONNECTION</text></g></svg></a>
+            <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+            <nav class="nav-menu">
+                <a href="../index.html">Home</a>
+                <a href="../about/about.html">About</a>
+                <a href="../about/contact.html">Contact</a>
+                <a href="../components/quiz.html">Quiz</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="quiz-container">
+        <div class="quiz-header">
+            <h1>Relationship Health Check</h1>
+            <p>Learn as you play: every question teaches you something</p>
+        </div>
+
+        <div class="quiz-content">
+            <div id="start-screen" class="quiz-section active">
+                <div class="start-icon"><i class="fas fa-heart-pulse"></i></div>
+                <h2>Build Your Quiz</h2>
+                <p class="intro">Real-life situations and myth-or-fact questions. After each answer you see the best choice and why, so you leave smarter than you came.</p>
+
+                <h3 class="setup-label">1. How many questions?</h3>
+                <div id="count-chips" class="chips">
+                    <button class="chip" data-count="5">5</button>
+                    <button class="chip active" data-count="10">10</button>
+                    <button class="chip" data-count="15">15</button>
+                    <button class="chip" data-count="20">20</button>
+                    <button class="chip" data-count="30">30</button>
+                </div>
+
+                <h3 class="setup-label">2. What do you want to practise?</h3>
+                <div id="focus-chips" class="chips">
+                    <button class="chip active" data-focus="all"><i class="fas fa-layer-group"></i> All topics</button>
+                    <button class="chip" data-focus="comm"><i class="fas fa-comments"></i> Communication</button>
+                    <button class="chip" data-focus="trust"><i class="fas fa-handshake"></i> Trust</button>
+                    <button class="chip" data-focus="support"><i class="fas fa-hand-holding-heart"></i> Support</button>
+                    <button class="chip" data-focus="bound"><i class="fas fa-shield-heart"></i> Boundaries</button>
+                    <button class="chip" data-focus="goals"><i class="fas fa-bullseye"></i> Goals</button>
+                </div>
+
+                <h3 class="setup-label">3. Timer per question</h3>
+                <div id="time-chips" class="chips">
+                    <button class="chip active" data-time="0"><i class="fas fa-infinity"></i> No timer</button>
+                    <button class="chip" data-time="20"><i class="fas fa-stopwatch"></i> 20s</button>
+                    <button class="chip" data-time="30"><i class="fas fa-stopwatch"></i> 30s</button>
+                    <button class="chip" data-time="45"><i class="fas fa-stopwatch"></i> 45s</button>
+                    <button class="chip" data-time="60"><i class="fas fa-stopwatch"></i> 60s</button>
+                </div>
+
+                <p id="setup-note" class="setup-note"></p>
+                <button id="start-quiz" class="quiz-button">Start Quiz</button>
+                <ul class="quiz-facts">
+                    <li><i class="fas fa-lightbulb"></i> Explanations after every answer</li>
+                    <li><i class="fas fa-fire"></i> Build a streak</li>
+                    <li><i class="fas fa-stopwatch"></i> Optional timer</li>
+                    <li><i class="fas fa-lock"></i> Nothing is saved</li>
+                </ul>
+            </div>
+
+            <div id="question-container" class="quiz-section">
+                <div class="quiz-meta">
+                    <span id="question-count"></span>
+                    <span id="score-live"></span>
+                </div>
+                <div id="progress-bar"><div id="progress-fill"></div></div>
+                <div id="timer-wrap" class="timer-wrap" style="display:none">
+                    <div class="timer-track"><div id="timer-fill"></div></div>
+                    <span id="timer-text"></span>
+                </div>
+                <div class="q-tags"><span id="question-area" class="q-tag"></span><span id="question-type" class="q-tag alt"></span></div>
+                <h2 id="question-text"></h2>
+                <div id="options-container"></div>
+                <div id="feedback" class="feedback" aria-live="polite"></div>
+                <button id="next-question" class="quiz-button next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                <p class="key-hint">Tip: press 1, 2, 3 or 4 to answer</p>
+            </div>
+
+            <div id="results-container" class="quiz-section">
+                <h2>Your Results</h2>
+                <div id="results-content"></div>
+                <div class="results-actions">
+                    <button id="retry-quiz" class="quiz-button">Try Again</button>
+                    <button id="new-quiz" class="quiz-button secondary">Change Settings</button>
+                    <a href="../index.html" class="quiz-button secondary">Explore Topics</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Astro Connection</h3>
+                <p>We're dedicated to helping you navigate modern relationships with confidence and authenticity. Our expert guidance is designed to empower you at every stage of your journey.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="../index.html" style="color: white; text-decoration: none;">Home</a></p>
+                <p><a href="../about/about.html" style="color: white; text-decoration: none;">About</a></p>
+                <p><a href="../about/contact.html" style="color: white; text-decoration: none;">Contact</a></p>
+                <p><a href="../about/privacy.html" style="color: white; text-decoration: none;">Privacy Policy</a></p>
+                <p><a href="../about/terms.html" style="color: white; text-decoration: none;">Terms of Service</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <a href="#" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><g transform="translate(50,30) scale(1.5)"><path d="M20,50 Q50,20 80,50 T140,50" fill="none" stroke="#FF4500" stroke-width="4"/><circle cx="50" cy="35" r="25" fill="#FF4500"/><text x="90" y="45" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">ASTRO</text><text x="90" y="85" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">CONNECTION</text></g></svg></a>
+            <p>&copy; 2025 Astro Connection. All rights reserved.</p>
+        </div>
+    </footer>
+    <div class="back-to-top"><i class="fas fa-arrow-up"></i></div>
+
+    <script src="../Scripts/index.js"></script>
+    <script src="../Scripts/quiz.js"></script>
+</body>
+</html>
