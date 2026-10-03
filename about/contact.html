@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Astro Connection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/about.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><g transform="translate(50,30) scale(1.5)"><path d="M20,50 Q50,20 80,50 T140,50" fill="none" stroke="#FF4500" stroke-width="4"/><circle cx="50" cy="35" r="25" fill="#FF4500"/><text x="90" y="45" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">ASTRO</text><text x="90" y="85" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">CONNECTION</text></g></svg></a>
+            <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+            <nav class="nav-menu">
+                <a href="../index.html">Home</a>
+                <a href="../about/about.html">About</a>
+                <a href="../about/contact.html">Contact</a>
+                <a href="../components/quiz.html">Quiz</a>
+            </nav>
+        </div>
+    </header>
+    
+
+    <main class="contact-content">
+        <section class="contact-hero">
+            <h1>Get In Touch</h1>
+            <p>We're here to help and answer any questions you might have</p>
+        </section>
+
+        <div class="contact-grid">
+            <section class="contact-info">
+                <h2>Contact Information</h2>
+                <div class="info-items">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Central Africa Zambia</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+260 774169681</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>adonissiyoto@gmail.com</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact-form">
+                <h2>Send Us a Message</h2>
+                <div id="success-message" style="display: none;">
+                    <h3 style="color: #28a745; text-align: center;">Message sent successfully!</h3>
+                    <p style="text-align: center;">Thank you for contacting us. We'll get back to you soon.</p>
+                </div>
+                <form id="contact-form" action="https://formspree.io/f/mgvkkybn" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Astro Connection</h3>
+                <p>We're dedicated to helping you navigate modern relationships with confidence and authenticity. Our expert guidance is designed to empower you at every stage of your journey.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="../index.html" style="color: white; text-decoration: none;">Home</a></p>
+                <p><a href="../about/about.html" style="color: white; text-decoration: none;">About</a></p>
+                <p><a href="../about/contact.html" style="color: white; text-decoration: none;">Contact</a></p>
+                <p><a href="../about/privacy.html" style="color: white; text-decoration: none;">Privacy Policy</a></p>
+                <p><a href="../about/terms.html" style="color: white; text-decoration: none;">Terms of Service</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <a href="#" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><g transform="translate(50,30) scale(1.5)"><path d="M20,50 Q50,20 80,50 T140,50" fill="none" stroke="#FF4500" stroke-width="4"/><circle cx="50" cy="35" r="25" fill="#FF4500"/><text x="90" y="45" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">ASTRO</text><text x="90" y="85" font-family="Arial" font-weight="bold" font-size="36" fill="#FF4500">CONNECTION</text></g></svg></a>
+            <p>&copy; 2025 Astro Connection. All rights reserved.</p>
+        </div>
+    </footer>
+    <div class="back-to-top"><i class="fas fa-arrow-up"></i></div>
+
+    <script src="../Scripts/index.js"></script>
+    <script>
+        const form = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    form.reset();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
