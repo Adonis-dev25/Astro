@@ -1,0 +1,69 @@
+/* ===== Contact page (self-contained: works even if other CSS files are old) ===== */
+.ct-page{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.ct-hero{text-align:center;padding:clamp(40px,8vw,80px) 20px;border-radius:20px;margin-bottom:34px;color:#fff;
+  background:linear-gradient(135deg,#FF4500,#ff8a3d);position:relative;overflow:hidden}
+.ct-hero:before,.ct-hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
+.ct-hero:before{width:260px;height:260px;left:-80px;top:-100px}
+.ct-hero:after{width:200px;height:200px;right:-60px;bottom:-90px}
+.ct-hero h1{position:relative;font-size:clamp(2rem,6vw,3.2rem);margin-bottom:10px;color:#fff}
+.ct-hero p{position:relative;font-size:clamp(1rem,2.5vw,1.25rem);max-width:560px;margin:0 auto;opacity:.95;color:#fff}
+
+.ct-reach{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:22px;max-width:900px;margin:0 auto 14px}
+.ct-tile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;text-decoration:none;color:#333;
+  background:#fff;border-radius:20px;padding:30px 18px 26px;box-shadow:0 8px 26px rgba(0,0,0,.09);
+  transition:transform .25s ease,box-shadow .25s ease;-webkit-tap-highlight-color:transparent}
+.ct-tile:hover,.ct-tile:focus-visible{transform:translateY(-6px);box-shadow:0 16px 34px rgba(0,0,0,.15)}
+.ct-tile:focus-visible{outline:3px solid #FF4500;outline-offset:3px}
+.ct-tile:active{transform:scale(.97)}
+.ct-icon{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;color:#fff;margin-bottom:10px;position:relative}
+.ct-wa .ct-icon{background:linear-gradient(135deg,#25D366,#128C7E)}
+.ct-call .ct-icon{background:linear-gradient(135deg,#3b8cff,#1a5fd0)}
+.ct-mail .ct-icon{background:linear-gradient(135deg,#ff6a5c,#d93025)}
+.ct-wa .ct-icon:after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid #25D366;animation:ctPulse 2.2s ease-out infinite}
+@keyframes ctPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+.ct-label{font-size:1.2rem;font-weight:700}
+.ct-sub{color:#777;font-size:.95rem}
+.ct-note{text-align:center;color:#777;font-size:.9rem;margin:6px 0 38px}
+.ct-note a{color:#FF4500;font-weight:600}
+
+.ct-divider{display:flex;align-items:center;gap:16px;max-width:720px;margin:0 auto 26px;color:#888;font-weight:600}
+.ct-divider:before,.ct-divider:after{content:"";flex:1;height:1px;background:#ddd}
+
+.ct-card{max-width:720px;margin:0 auto;background:#fff;border-radius:20px;padding:clamp(22px,5vw,40px);
+  box-shadow:0 8px 26px rgba(0,0,0,.09);border-top:5px solid #FF4500}
+.ct-card h2{color:#FF4500;margin-bottom:6px;font-size:clamp(1.4rem,3vw,1.8rem)}
+.ct-card .ct-lead{color:#666;margin-bottom:22px}
+.ct-field{margin-bottom:18px}
+.ct-field label{display:block;font-weight:600;margin-bottom:6px;color:#444}
+.ct-field input,.ct-field textarea{width:100%;padding:14px 16px;font:inherit;font-size:16px;border:2px solid #e6e6e6;border-radius:12px;
+  background:#fafafa;color:#222;transition:border-color .2s,box-shadow .2s,background .2s}
+.ct-field textarea{resize:vertical;min-height:130px}
+.ct-field input:focus,.ct-field textarea:focus{outline:none;border-color:#FF4500;background:#fff;box-shadow:0 0 0 4px rgba(255,69,0,.15)}
+.ct-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:6px}
+.ct-send{background:#FF4500;color:#fff;border:0;border-radius:30px;padding:14px 34px;font:inherit;font-weight:700;font-size:1rem;cursor:pointer;
+  min-height:48px;transition:background .2s,transform .2s}
+.ct-send:hover{background:#e03e00;transform:translateY(-2px)}
+.ct-send:disabled{opacity:.6;cursor:wait;transform:none}
+.ct-alt{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#128C7E;border:2px solid #25D366;border-radius:30px;
+  padding:12px 24px;font:inherit;font-weight:700;font-size:1rem;cursor:pointer;text-decoration:none;min-height:48px;transition:all .2s}
+.ct-alt:hover{background:#25D366;color:#fff}
+.ct-alt.mail{color:#d93025;border-color:#d93025}.ct-alt.mail:hover{background:#d93025;color:#fff}
+.ct-ok{text-align:center;padding:20px 0}
+.ct-ok i{font-size:3.4rem;color:#28a745;margin-bottom:10px}
+.ct-ok h3{color:#28a745;margin-bottom:6px}
+.ct-err{background:#fff1ee;border-left:4px solid #e0533a;border-radius:10px;padding:14px 18px;margin-bottom:20px;color:#7a2615}
+.ct-err p{margin:6px 0 12px;color:#7a2615}
+.ct-err .ct-actions{margin:0}
+
+[data-theme="dark"] .ct-tile,[data-theme="dark"] .ct-card{background:#1e1e1e;color:#eee}
+[data-theme="dark"] .ct-sub,[data-theme="dark"] .ct-note,[data-theme="dark"] .ct-card .ct-lead{color:#bbb}
+[data-theme="dark"] .ct-field label{color:#ddd}
+[data-theme="dark"] .ct-field input,[data-theme="dark"] .ct-field textarea{background:#262626;color:#eee;border-color:#444}
+[data-theme="dark"] .ct-alt{background:#1e1e1e}
+[data-theme="dark"] .ct-err,[data-theme="dark"] .ct-err p{background:#35201c;color:#ffb4a6}
+@media (max-width:520px){.ct-actions .ct-send,.ct-actions .ct-alt{width:100%;justify-content:center}.ct-icon{width:76px;height:76px;font-size:2.1rem}}
+@media (prefers-reduced-motion:reduce){.ct-wa .ct-icon:after{animation:none;opacity:0}.ct-tile{transition:none}}
+
+.ct-number{font-weight:700;color:#1a5fd0;font-size:1.05rem;letter-spacing:.3px}
+[data-theme="dark"] .ct-number{color:#7fb0ff}
